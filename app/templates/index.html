@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f8fc">
+  <title>AI Resume Matcher | ATS Analysis</title>
+
+  <!-- Keep the existing path -->
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+
+    <header class="topbar">
+      <a href="/" class="brand" aria-label="AI Resume Matcher home">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span>Resume<span class="brand-accent">Match</span></span>
+      </a>
+
+      <div class="header-label">
+        <span class="status-dot"></span>
+        AI-powered resume analysis
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="hero">
+        <span class="eyebrow">CAREER INTELLIGENCE</span>
+        <h1>Find your fit.<br><span>Make your next move.</span></h1>
+        <p>
+          Compare your resume against a job description to identify
+          relevant skills, missing keywords, and opportunities to improve.
+        </p>
+      </section>
+
+      <section class="workspace" aria-label="Resume matching form">
+        <div class="section-heading">
+          <div>
+            <h2>Resume analysis</h2>
+            <p>Complete both steps to get your match report.</p>
+          </div>
+          <span class="step-count">2 steps</span>
+        </div>
+
+        <form id="matchForm" enctype="multipart/form-data">
+          <div class="input-grid">
+
+            <div class="form-card">
+              <div class="card-heading">
+                <span class="step-number">01</span>
+                <div>
+                  <h3>Your resume</h3>
+                  <p>Upload your latest resume.</p>
+                </div>
+              </div>
+
+              <label for="resume" class="upload-zone" id="uploadZone">
+                <span class="upload-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5"
+                      stroke="currentColor" stroke-width="1.8"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5 14v4a2 2 0 002 2h10a2 2 0 002-2v-4"
+                      stroke="currentColor" stroke-width="1.8"
+                      stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <span class="upload-title" id="uploadTitle">
+                  Choose a file to upload
+                </span>
+                <span class="upload-description">
+                  PDF, DOCX or TXT · Maximum 10 MB
+                </span>
+                <span class="browse-button">Browse files</span>
+                <input
+                  type="file"
+                  id="resume"
+                  name="resume"
+                  accept=".pdf,.docx,.txt"
+                  required
+                >
+              </label>
+
+              <p class="file-info" id="fileInfo" aria-live="polite">
+                Your resume will be used for this analysis.
+              </p>
+            </div>
+
+            <div class="form-card">
+              <div class="card-heading">
+                <span class="step-number">02</span>
+                <div>
+                  <h3>Job description</h3>
+                  <p>Paste the role you want to apply for.</p>
+                </div>
+              </div>
+
+              <label for="job" class="visually-hidden">
+                Job description
+              </label>
+              <textarea
+                id="job"
+                name="job_description"
+                placeholder="Paste the complete job description here...
+
+Include required skills, qualifications, responsibilities and tools."
+                minlength="20"
+                maxlength="20000"
+                required
+              ></textarea>
+
+              <div class="textarea-footer">
+                <span>Include as much relevant detail as possible.</span>
+                <span id="charCount">0 / 20,000</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="form-footer">
+            <div class="privacy-note">
+              <span aria-hidden="true">✓</span>
+              Review your resume before uploading sensitive information.
+            </div>
+
+            <button type="submit" id="matchBtn" class="primary-button">
+              <span id="buttonText">Analyze my resume</span>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12h14m-6-6l6 6-6 6"
+                  stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </form>
+
+        <div id="status" class="status" role="status"
+          aria-live="polite" hidden></div>
+      </section>
+
+      <section id="result" class="result-section" aria-live="polite"
+        hidden>
+        <div class="results-heading">
+          <div>
+            <span class="eyebrow">YOUR REPORT</span>
+            <h2>Resume match results</h2>
+            <p id="resultSummary">
+              Review your alignment with the target role.
+            </p>
+          </div>
+          <button type="button" id="resetBtn" class="secondary-button">
+            Start new analysis
+          </button>
+        </div>
+
+        <div id="resultContent" class="result-grid"></div>
+      </section>
+
+      <footer class="page-footer">
+        <p>AI Resume Matcher <span>·</span> Make every application count.</p>
+        <p>AI-generated analysis is a guide, not a hiring decision.</p>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
